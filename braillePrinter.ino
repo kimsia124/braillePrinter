@@ -3,7 +3,7 @@
 #include <String.h>
 #include <Stepper.h>
 
-const int stepsPerRevolution = 2048; 
+const int stepsPerRevolution = 724; 
 Stepper myStepper(stepsPerRevolution,13,11,12,10);    
 
 SoftwareSerial BTSerial(9,8);   //bluetooth module Tx:Digital 2 Rx:Digital 3
@@ -42,12 +42,12 @@ void loop()
       Serial.println(data);
     
       printBraille(char(data[0]), char(data[1]), char(data[2]), char(data[3]), char(data[4]), char(data[5]));
+      initBraille();
       delay(500);
       
-      myStepper.setSpeed(14); 
+      myStepper.setSpeed(50); 
       myStepper.step(stepsPerRevolution);
       delay(100);
-      initBraille();
       Serial.flush();
   }
 }
